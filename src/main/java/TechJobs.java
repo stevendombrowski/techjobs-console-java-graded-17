@@ -62,9 +62,16 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchTerm));
+                    if (searchTerm.equals("")) {
+                        System.out.print("No Results");
+                    } else { printJobs(JobData.findByValue(searchTerm));
+                    }
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    if (searchTerm.equals("")) {
+                        System.out.print("No Results");
+                    } else {
+                        printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    }
                 }
             }
         }
@@ -91,7 +98,7 @@ public class TechJobs {
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
-                System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
+                System.out.println(j + " - " + choices.get(choiceKeys[j]));
             }
 
             if (in.hasNextInt()) {
@@ -120,13 +127,13 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-//        System.out.println("*****\n" + someJobs + "*****");
+
         for (HashMap<String, String> jobs : someJobs){
-            System.out.println("*****");
+            System.out.println("\n*****");
             for (Map.Entry<String, String> entry : jobs.entrySet()){
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
-            System.out.println("*****\n");
+            System.out.println("*****");
         }
     }
 }
